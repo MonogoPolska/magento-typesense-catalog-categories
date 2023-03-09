@@ -92,7 +92,6 @@ class IndexManager extends IndexManagerCore
             'display_mode' => ['name' => 'display_mode', 'type' => 'string', 'optional' => true, 'index' => true, 'facet' => true],
             'landing_page' => ['name' => 'landing_page', 'type' => 'string', 'optional' => true, 'index' => false,],
             'landing_page_stripped' => ['name' => 'landing_page_stripped', 'type' => 'string', 'optional' => true, 'index' => true,],
-
         ];
     }
 }
