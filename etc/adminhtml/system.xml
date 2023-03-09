@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="typesense" translate="label, comment" sortOrder="9000" class="typesense-tab">
+            <label>Typesense</label>
+        </tab>
+        <section id="typesense_categories" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                 translate="label">
+            <label>Catalog Categories</label>
+            <tab>typesense</tab>
+            <resource>Monogo_Typesense::config</resource>
+            <group id="settings" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Settings</label>
+                <field id="enabled" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>Enabled</label>
+                    <comment>Enable Categories indexation</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="filter_is_active" type="select" sortOrder="20" showInWebsite="1" showInStore="1"
+                       showInDefault="1"
+                       translate="label">
+                    <label>Index only active categories</label>
+                    <comment>Index categories with is_active attribute set to 1. If no, all categories will be indexed
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\YesNo</source_model>
+                </field>
+                <field id="filter_include_in_menu" type="select" sortOrder="30" showInWebsite="1" showInStore="1"
+                       showInDefault="1"
+                       translate="label">
+                    <label>Index only categories included in menu</label>
+                    <comment>Index categories with include_in_menu attribute set to 1. If no, all categories will be
+                        indexed
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\YesNo</source_model>
+                </field>
+                <field id="filter_product_count" type="select" sortOrder="40" showInWebsite="1" showInStore="1"
+                       showInDefault="1"
+                       translate="label">
+                    <label>Index only categories with products</label>
+                    <comment>Index only categories with number of products greater than 0</comment>
+                    <source_model>Magento\Config\Model\Config\Source\YesNo</source_model>
+                </field>
+                <field id="schema" translate="label comment" type="text" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Index schema</label>
+                    <frontend_model>Monogo\TypesenseCatalogCategories\Model\Config\Source\Schema</frontend_model>
+                    <backend_model>Monogo\TypesenseCatalogCategories\Model\Config\Backend\Schema</backend_model>
+                    <comment>
+                        <![CDATA[
+                        If not configured, default schema will be applied. <br />
+                           Read more about
+                                <a href="https://typesense.org/docs/0.24.0/api/collections.html#schema-parameters" target="_blank">schema parameters</a>.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
