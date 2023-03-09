@@ -168,8 +168,6 @@ class DataProvider extends DataProviderCore
                 'is_anchor' => $category->getIsAnchor(),
             ];
 
-            print_r($categoryObject);
-
             $this->categoryData->getCategoryAttributes($category, $storeId, $categoryObject);
 
             if (!empty($category->getDescription())) {
@@ -186,7 +184,6 @@ class DataProvider extends DataProviderCore
                     $categoryObject['landing_page_stripped'] = $this->strip($landingPage, ['script', 'style']);
                 }
             }
-
 
             $transport = new DataObject($categoryObject);
             $this->eventManager->dispatch(
