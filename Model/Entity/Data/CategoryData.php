@@ -45,6 +45,11 @@ class CategoryData
     private array $coreCategories = [];
 
     /**
+     * @var array
+     */
+    private array $categoryNames = [];
+
+    /**
      * @var int
      */
     private int $rootCategoryId = -1;
