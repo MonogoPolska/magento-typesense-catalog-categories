@@ -18,6 +18,7 @@ As the first step, Go to Magento Admin &rarr; Configuration &rarr; Typesense &ra
 'name' => $prefix . '_categories' . $suffix,
 'fields' => [
             ['name' => 'entity_id', 'type' => 'int32', 'optional' => false, 'index' => true],
+            ['name' => 'uid', 'type' => 'string', 'optional' => false, 'index' => true],
             ['name' => 'store_id', 'type' => 'int32', 'optional' => false, 'index' => true],
             ['name' => 'name', 'type' => 'string', 'optional' => false, 'index' => true],
             ['name' => 'url', 'type' => 'string', 'optional' => false, 'index' => true],

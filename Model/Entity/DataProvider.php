@@ -108,7 +108,7 @@ class DataProvider extends DataProviderCore
             ->addNameToResult()
             ->setStoreId($storeId)
             ->addUrlRewriteToResult()
-            ->addAttributeToFilter('level', ['gt' => 1])
+            ->addAttributeToFilter('level', ['gt' => 0])
             ->addPathFilter($storeRootCategoryPath)
             ->addAttributeToSelect('*')
             ->addOrderField('entity_id');
@@ -148,6 +148,7 @@ class DataProvider extends DataProviderCore
 
             $categoryObject = [
                 'id' => $category->getId(),
+                'uid' => base64_encode($category->getId()),
                 'entity_id' => $category->getId(),
                 'store_id' => $storeId,
                 'is_active' => $category->getIsActive(),
