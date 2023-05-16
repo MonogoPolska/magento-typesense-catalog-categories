@@ -166,6 +166,8 @@ class DataProvider extends DataProviderCore
                 'meta_description' => $category->getMetaDescription(),
                 'display_mode' => $category->getDisplayMode(),
                 'is_anchor' => $category->getIsAnchor(),
+                'parent_categories' => $this->getParentCategoriesIds($category),
+                'children_categories' => $this->getChildrenCategoriesIds($category),
             ];
 
             $this->categoryData->getCategoryAttributes($category, $storeId, $categoryObject);
@@ -199,5 +201,33 @@ class DataProvider extends DataProviderCore
         }
         $categories['toRemove'] = array_unique(array_keys($dataIdsToRemove));
         return $categories;
+    }
+
+    /**
+     * @param Category $category
+     * @return array
+     */
+    public function getParentCategoriesIds(Category $category): array
+    {
+        $parentCategories = [];
+        $parent = $category->getParentCategories();
+        foreach ($parent as $item) {
+            $parentCategories[] = $item->getEntityId();
+        }
+        return $parentCategories;
+    }
+
+    /**
+     * @param Category $category
+     * @return array
+     */
+    public function getChildrenCategoriesIds(Category $category): array
+    {
+        $childrenCategories = [];
+        $children = $category->getChildrenCategories();
+        foreach ($children as $item) {
+            $childrenCategories[] = $item->getEntityId();
+        }
+        return $childrenCategories;
     }
 }
