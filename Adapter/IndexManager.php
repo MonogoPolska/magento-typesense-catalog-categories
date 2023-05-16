@@ -75,6 +75,7 @@ class IndexManager extends IndexManagerCore
     {
         return [
             'entity_id' => ['name' => 'entity_id', 'type' => 'int32', 'optional' => false, 'index' => true],
+            'uid' => ['name' => 'uid', 'type' => 'string', 'optional' => false, 'index' => true],
             'store_id' => ['name' => 'store_id', 'type' => 'int32', 'optional' => false, 'index' => true],
             'name' => ['name' => 'name', 'type' => 'string', 'optional' => false, 'index' => true],
             'url' => ['name' => 'url', 'type' => 'string', 'optional' => false, 'index' => true],
