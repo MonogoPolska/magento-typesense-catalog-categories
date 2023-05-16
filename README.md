@@ -35,6 +35,8 @@ As the first step, Go to Magento Admin &rarr; Configuration &rarr; Typesense &ra
             ['name' => 'display_mode', 'type' => 'string', 'optional' => true, 'index' => true, 'facet' => true],
             ['name' => 'landing_page', 'type' => 'string', 'optional' => true, 'index' => false,],
             ['name' => 'landing_page_stripped', 'type' => 'string', 'optional' => true, 'index' => true,],
+            ['name' => 'parent_categories', 'type' => 'string[]', 'optional' => true, 'index' => true,],
+            ['name' => 'children_categories', 'type' => 'string[]', 'optional' => true, 'index' => true,],
         ],
 'default_sorting_field' => 'entity_id'
 ```
