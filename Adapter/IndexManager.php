@@ -41,7 +41,8 @@ class IndexManager extends IndexManagerCore
         return [
             'name' => $name,
             'fields' => $this->getFormattedFields(),
-            'default_sorting_field' => 'entity_id'
+            'default_sorting_field' => 'entity_id',
+            'enable_nested_fields' => true
         ];
     }
 
@@ -79,6 +80,8 @@ class IndexManager extends IndexManagerCore
             'store_id' => ['name' => 'store_id', 'type' => 'int32', 'optional' => false, 'index' => true],
             'name' => ['name' => 'name', 'type' => 'string', 'optional' => false, 'index' => true],
             'url' => ['name' => 'url', 'type' => 'string', 'optional' => false, 'index' => true],
+            'url_key' => ['name' => 'url_key', 'type' => 'string', 'optional' => false, 'index' => true],
+            'canonical_url' => ['name' => 'canonical_url', 'type' => 'string', 'optional' => false, 'index' => true],
             'is_active' => ['name' => 'is_active', 'type' => 'int32', 'optional' => false, 'index' => true, 'facet' => true],
             'is_anchor' => ['name' => 'is_anchor', 'type' => 'int32', 'optional' => false, 'index' => true, 'facet' => true],
             'include_in_menu' => ['name' => 'include_in_menu', 'type' => 'int32', 'optional' => false, 'index' => true, 'facet' => true],
@@ -95,6 +98,7 @@ class IndexManager extends IndexManagerCore
             'landing_page_stripped' => ['name' => 'landing_page_stripped', 'type' => 'string', 'optional' => true, 'index' => true,],
             'parent_categories' => ['name' => 'parent_categories', 'type' => 'string[]', 'optional' => true, 'index' => true,],
             'children_categories' => ['name' => 'children_categories', 'type' => 'string[]', 'optional' => true, 'index' => true,],
+            'breadcrumbs' => ['name' => 'breadcrumbs', 'type' => 'object[]', 'optional' => true, 'index' => false,],
         ];
     }
 }
