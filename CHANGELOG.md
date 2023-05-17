@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## 1.0.6
+- Fixes in category images and url/seo/breadcrumbs
+
 ## 1.0.5
 - Added uid for category
 

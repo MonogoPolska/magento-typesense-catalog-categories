@@ -22,6 +22,8 @@ As the first step, Go to Magento Admin &rarr; Configuration &rarr; Typesense &ra
             ['name' => 'store_id', 'type' => 'int32', 'optional' => false, 'index' => true],
             ['name' => 'name', 'type' => 'string', 'optional' => false, 'index' => true],
             ['name' => 'url', 'type' => 'string', 'optional' => false, 'index' => true],
+            ['name' => 'url_key', 'type' => 'string', 'optional' => false, 'index' => true],
+            ['name' => 'canonical_url', 'type' => 'string', 'optional' => false, 'index' => true],
             ['name' => 'is_active', 'type' => 'int32', 'optional' => false, 'index' => true, 'facet' => true],
             ['name' => 'is_anchor', 'type' => 'int32', 'optional' => false, 'index' => true, 'facet' => true],
             ['name' => 'include_in_menu', 'type' => 'int32', 'optional' => false, 'index' => true, 'facet' => true],
@@ -38,6 +40,7 @@ As the first step, Go to Magento Admin &rarr; Configuration &rarr; Typesense &ra
             ['name' => 'landing_page_stripped', 'type' => 'string', 'optional' => true, 'index' => true,],
             ['name' => 'parent_categories', 'type' => 'string[]', 'optional' => true, 'index' => true,],
             ['name' => 'children_categories', 'type' => 'string[]', 'optional' => true, 'index' => true,],
+            ['name' => 'breadcrumbs', 'type' => 'object[]', 'optional' => true, 'index' => false,],
         ],
 'default_sorting_field' => 'entity_id'
 ```

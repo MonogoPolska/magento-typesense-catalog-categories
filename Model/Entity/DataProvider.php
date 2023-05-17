@@ -6,6 +6,7 @@ namespace Monogo\TypesenseCatalogCategories\Model\Entity;
 use Exception;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
+use Magento\CatalogGraphQl\Model\Resolver\Category\DataProvider\Breadcrumbs as BreadcrumbsDataProvider;
 use Magento\Cms\Model\Template\FilterProvider;
 use Magento\Framework\DataObject;
 use Magento\Framework\Event\ManagerInterface;
@@ -54,6 +55,11 @@ class DataProvider extends DataProviderCore
     private CategoryData $categoryData;
 
     /**
+     * @var BreadcrumbsDataProvider
+     */
+    private BreadcrumbsDataProvider $breadcrumbsDataProvider;
+
+    /**
      * @param ManagerInterface $eventManager
      * @param CategoryCollectionFactory $categoryCollectionFactory
      * @param ConfigService $configService
@@ -62,6 +68,7 @@ class DataProvider extends DataProviderCore
      * @param UrlFactory $frontendUrlFactory
      * @param IndexManager $indexManager
      * @param CategoryData $categoryData
+     * @param BreadcrumbsDataProvider $breadcrumbsDataProvider
      */
     public function __construct(
         ManagerInterface          $eventManager,
@@ -71,7 +78,8 @@ class DataProvider extends DataProviderCore
         StoreManagerInterface     $storeManager,
         UrlFactory                $frontendUrlFactory,
         IndexManager              $indexManager,
-        CategoryData              $categoryData
+        CategoryData              $categoryData,
+        BreadcrumbsDataProvider   $breadcrumbsDataProvider
     )
     {
         parent::__construct($configService, $storeManager);
@@ -82,6 +90,7 @@ class DataProvider extends DataProviderCore
         $this->frontendUrlFactory = $frontendUrlFactory;
         $this->indexManager = $indexManager;
         $this->categoryData = $categoryData;
+        $this->breadcrumbsDataProvider = $breadcrumbsDataProvider;
     }
 
     /**
@@ -156,8 +165,10 @@ class DataProvider extends DataProviderCore
                 'path' => $this->categoryData->getCategoryPath($category, $storeId),
                 'level' => $category->getLevel(),
                 'url' => $category->getUrl(),
-                'url_path' => $category->getUrlInstance()->getBaseUrl(['_secure' => true]),
+                'url_path' => $category->getUrl() !== null ? str_replace($category->getUrlInstance()->getBaseUrl(), '', $category->getUrl()) : '',
                 'url_key' => $category->getUrlKey(),
+                'canonical_url' => $category->getUrl() !== null ? str_replace($category->getUrlInstance()->getBaseUrl(), '', $category->getUrl()) : '',
+                'breadcrumbs'=>$this->breadcrumbsDataProvider->getData($category->getPath()),
                 'include_in_menu' => $category->getIncludeInMenu(),
                 'product_count' => $category->getProductCount(),
                 'categories_path' => array_map('trim', explode('/', $this->categoryData->getCategoryPath($category, $storeId))),

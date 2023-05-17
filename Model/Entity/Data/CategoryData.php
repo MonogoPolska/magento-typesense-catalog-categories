@@ -7,6 +7,7 @@ use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\ResourceModel\Category as CategoryResource;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Magento\Cms\Model\ResourceModel\Block\CollectionFactory;
+use Magento\Eav\Model\Entity\Attribute\AbstractAttribute;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -86,12 +87,15 @@ class CategoryData
     public function getCategoryAttributes(Category $category, ?int $storeId, array &$data): void
     {
         foreach ($this->configService->getSchema($storeId) as $attribute) {
-
+            $frontendInput = '';
             $value = $category->getData($attribute['name']);
             $resource = $category->getResource();
 
+            /** @var AbstractAttribute $attributeResource */
             $attributeResource = $resource->getAttribute($attribute['name']);
+
             if ($attributeResource) {
+                $frontendInput = $attributeResource->getFrontendInput();
                 $value = $attributeResource->getFrontend()->getValue($category);
             }
 
@@ -102,7 +106,20 @@ class CategoryData
             if ($value) {
                 $data[$attribute['name'] . '_label'] = $value;
             }
-            $data[$attribute['name']] = $category->getData($attribute['name']);
+            if(!empty($frontendInput) && $frontendInput =='image'){
+                if(!empty($value)) {
+                    $image = basename($value);
+                    $category->setData($attribute['name'], $image);
+                    $image = $category->getImageUrl($attribute['name']);
+                    $data[$attribute['name']] = $image;
+                    $data[$attribute['name'] . '_label'] = $attribute['name'];
+                    if (is_bool($image)) {
+                        $image = '';
+                    }
+                }
+            }else {
+                $data[$attribute['name']] = $category->getData($attribute['name']);
+            }
         }
     }
 
@@ -148,7 +165,7 @@ class CategoryData
         $path = '';
         foreach ($category->getPathIds() as $categoryId) {
             if ($path !== '') {
-                $path .= ' / ';
+                $path .= '/';
             }
             $path .= $this->getCategoryName((int)$categoryId, $storeId);
         }
@@ -173,7 +190,7 @@ class CategoryData
 
         $categoryId = (int)$categoryId;
         $storeId = (int)$storeId;
-        if (!isset($this->categoryNames)) {
+        if (empty($this->categoryNames)) {
             $this->categoryNames = [];
             $categoryModel = $this->categoryResource;
 
@@ -194,10 +211,10 @@ class CategoryData
                     )
                     ->where('backend.attribute_id = ?', $attribute->getAttributeId())
                     ->where('category.level > ?', 1);
-
                 $this->categoryNames = $connection->fetchPairs($select);
             }
         }
+
 
         $categoryName = null;
         $categoryKeyId = $this->getCategoryKeyId($categoryId, $storeId);
@@ -228,7 +245,7 @@ class CategoryData
     {
         if ($this->configService->getCorrectIdColumn() === 'row_id') {
             $category = $this->getCategoryById($categoryId, $storeId);
-            return $category ? $category->getRowId() : null;
+            return $category?->getRowId();
         }
         return $categoryId;
     }
