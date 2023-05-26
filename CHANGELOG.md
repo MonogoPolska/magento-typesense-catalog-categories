@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## 1.0.7
+- Removed dependecy for catalog_product_category and catalog_category_product indexers.
+
 ## 1.0.6
 - Fixes in category images and url/seo/breadcrumbs
 

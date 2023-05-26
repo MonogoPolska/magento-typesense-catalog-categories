@@ -7,10 +7,6 @@
         <description translate="true">
             Rebuild Typesense Catalog Categories index.
         </description>
-        <dependencies>
-            <indexer id="catalog_product_category"/>
-            <indexer id="catalog_category_product"/>
-        </dependencies>
     </indexer>
     <indexer id="typesense_all">
         <dependencies>
