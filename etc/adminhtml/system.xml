@@ -51,7 +51,7 @@
                         <![CDATA[
                         If not configured, default schema will be applied. <br />
                            Read more about
-                                <a href="https://typesense.org/docs/0.24.0/api/collections.html#schema-parameters" target="_blank">schema parameters</a>.
+                                <a href="https://typesense.org/docs/0.25.0/api/collections.html#schema-parameters" target="_blank">schema parameters</a>.
                         ]]>
                     </comment>
                 </field>
