@@ -2,6 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
+    <type name="Monogo\TypesenseCore\Model\Indexer\RegisteredIndexers">
+        <arguments>
+            <argument name="additionalData" xsi:type="array">
+                <item name="_categories" xsi:type="string">Categories</item>
+            </argument>
+        </arguments>
+    </type>
     <type name="Monogo\TypesenseCore\Model\Config\Source\Sections">
         <arguments>
             <argument name="additionalData" xsi:type="array">
