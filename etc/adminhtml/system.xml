@@ -24,7 +24,7 @@
                     <label>Index only active categories</label>
                     <comment>Index categories with is_active attribute set to 1. If no, all categories will be indexed
                     </comment>
-                    <source_model>Magento\Config\Model\Config\Source\YesNo</source_model>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="filter_include_in_menu" type="select" sortOrder="30" showInWebsite="1" showInStore="1"
                        showInDefault="1"
@@ -33,14 +33,14 @@
                     <comment>Index categories with include_in_menu attribute set to 1. If no, all categories will be
                         indexed
                     </comment>
-                    <source_model>Magento\Config\Model\Config\Source\YesNo</source_model>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="filter_product_count" type="select" sortOrder="40" showInWebsite="1" showInStore="1"
                        showInDefault="1"
                        translate="label">
                     <label>Index only categories with products</label>
                     <comment>Index only categories with number of products greater than 0</comment>
-                    <source_model>Magento\Config\Model\Config\Source\YesNo</source_model>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="schema" translate="label comment" type="text" sortOrder="100" showInDefault="1"
                        showInWebsite="1" showInStore="1">
