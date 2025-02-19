@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## [1.0.10] - 2025-02-19
+- Fixed type issue
+
 ## [1.0.9] - 2024-03-19
 - Fixed issue with invalid class reference in `system.xml` file.
 

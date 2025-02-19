@@ -219,7 +219,7 @@ class CategoryData
         $categoryName = null;
         $categoryKeyId = $this->getCategoryKeyId($categoryId, $storeId);
 
-        if ($categoryKeyId === null) {
+        if (empty($categoryKeyId)) {
             return null;
         }
 
@@ -245,7 +245,7 @@ class CategoryData
     {
         if ($this->configService->getCorrectIdColumn() === 'row_id') {
             $category = $this->getCategoryById($categoryId, $storeId);
-            return $category?->getRowId();
+            return (int)$category?->getRowId();
         }
         return $categoryId;
     }
