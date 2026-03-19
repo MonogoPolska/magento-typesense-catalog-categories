@@ -178,7 +178,7 @@ class CategoryData
      * @return string|null
      * @throws LocalizedException
      */
-    public function getCategoryName(int|Category $categoryId, int|Store $storeId = null): ?string
+    public function getCategoryName(int|Category $categoryId, int|Store|null $storeId = null): ?string
     {
         if ($categoryId instanceof Category) {
             $categoryId = $categoryId->getId();

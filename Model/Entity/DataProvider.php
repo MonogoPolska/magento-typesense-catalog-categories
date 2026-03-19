@@ -107,7 +107,7 @@ class DataProvider extends DataProviderCore
      * @return array
      * @throws Exception
      */
-    public function getData(?int $storeId, array $dataIds = null): array
+    public function getData(?int $storeId, ?array $dataIds = null): array
     {
         $store = $this->getStore($storeId);
         $storeRootCategoryPath = $this->categoryData->getRootCategoryPath($store);
